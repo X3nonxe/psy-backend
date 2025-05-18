@@ -8,7 +8,7 @@ const logger = new Logger();
 
 // Init Redis
 const redis = createClient({
-  url: `redis://${process.env.REDISHOST}:${process.env.REDISPORT}`
+  url: process.env.REDIS_URL,
 });
 (async () => {
   try {
