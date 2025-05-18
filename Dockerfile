@@ -4,7 +4,7 @@ FROM node:18-alpine
 # Set direktori kerja
 WORKDIR /app
 
-# Salin file package.json dan package-lock.json
+# Salin package.json dan package-lock.json
 COPY package*.json ./
 
 # Install dependencies
@@ -13,8 +13,11 @@ RUN npm install
 # Salin semua file ke dalam container
 COPY . .
 
-# Jalankan aplikasi
+# Jalankan build untuk compile TypeScript ke JavaScript
+RUN npm run build
+
+# Jalankan aplikasi (pastikan start script jalankan dist/app.js atau dist/main.js)
 CMD ["npm", "start"]
 
-# Jalankan di port 3000
+# Ekspos port 3000
 EXPOSE 3000
